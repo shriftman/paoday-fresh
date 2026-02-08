@@ -53,6 +53,7 @@ export default function CRMBoard() {
 
   useEffect(() => {
     fetchDeals();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const fetchDeals = async () => {
@@ -118,7 +119,6 @@ export default function CRMBoard() {
     if (!over) return;
 
     const activeId = active.id as string;
-    const overId = over.id as string;
 
     const activeDeal = deals.find((d) => d.id === activeId);
     if (!activeDeal) return;
