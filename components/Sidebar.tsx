@@ -10,7 +10,8 @@ import {
   Settings,
   ChevronLeft,
   ChevronRight,
-  LogOut
+  LogOut,
+  Search
 } from 'lucide-react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
@@ -19,6 +20,7 @@ import { createClient } from '@/lib/supabase/client';
 const menuItems = [
   { icon: Home, label: 'Home', href: '/dashboard' },
   { icon: LayoutDashboard, label: 'CRM Pipeline', href: '/dashboard/crm' },
+  { icon: Search, label: 'Research Boards', href: '/dashboard/research' },
   { icon: Users, label: 'Contacts', href: '/dashboard/contacts' },
   { icon: Building2, label: 'Companies', href: '/dashboard/companies' },
   { icon: FileText, label: 'Documents', href: '/dashboard/documents' },

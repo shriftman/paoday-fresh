@@ -1,6 +1,6 @@
-# Paoday CRM - Phase 1 + Phase 2 ✨
+# Paoday CRM - Phase 1 + 2 + 3 ✨
 
-A modern Customer Relationship Management system with Monday.com-style UI, built with Next.js 14 and Supabase.
+A modern Customer Relationship Management system with Monday.com-style UI, flexible research boards, and powerful data management. Built with Next.js 14 and Supabase.
 
 ## ✅ Phase 1 Features (Complete)
 
@@ -32,6 +32,25 @@ A modern Customer Relationship Management system with Monday.com-style UI, built
   - Contact information
 - **Dashboard Statistics** with real data
 - **Visual Feedback** and smooth animations
+
+## 🔬 Phase 3 Features (Complete)
+
+- **Flexible Research Boards** with configurable schema
+- **11 Column Types**:
+  - Status (colored labels)
+  - Person (with avatars)
+  - Files (attachments)
+  - Date, Text, Number
+  - Vote, Checkbox, Link, Email, Phone
+- **Multiple Views**:
+  - 📋 Table View (spreadsheet-style)
+  - 📊 Kanban View (drag-and-drop cards)
+- **Inline Editing** - Click any cell to edit
+- **Smart Grouping** - Group by Status, Person, Date, or Text columns
+- **Powerful Filtering** - 9 filter operators, multiple filters
+- **Real-time Search** - Search across all columns
+- **Row Detail Drawer** - Full-screen row details with slide animation
+- **Professional UI** - Monday.com-inspired design with colored status pills and avatars
 
 ## 🚀 Quick Start
 
