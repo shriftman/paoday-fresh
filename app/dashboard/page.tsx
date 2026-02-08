@@ -36,7 +36,7 @@ export default async function DashboardPage() {
               Welcome to your Dashboard!
             </h2>
             <p className="text-gray-600 mb-4">
-              You're successfully authenticated with Supabase.
+              You are successfully authenticated with Supabase.
             </p>
             <div className="bg-green-50 border border-green-200 rounded-md p-4">
               <h3 className="text-sm font-medium text-green-800 mb-2">

@@ -51,7 +51,7 @@ export default function SignupPage() {
           router.push('/login')
         }, 3000)
       }
-    } catch (error: any) {
+    } catch (error) {
       setError(error.message || 'An error occurred during signup')
     } finally {
       setLoading(false)
