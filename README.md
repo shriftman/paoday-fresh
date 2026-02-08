@@ -1,8 +1,8 @@
-# Paoday CRM - Phase 1
+# Paoday CRM - Phase 1 + Phase 2 ✨
 
-A modern Customer Relationship Management system built with Next.js 14 and Supabase.
+A modern Customer Relationship Management system with Monday.com-style UI, built with Next.js 14 and Supabase.
 
-## ✅ Phase 1 Features
+## ✅ Phase 1 Features (Complete)
 
 - **Next.js 14** with App Router and TypeScript
 - **Supabase Authentication** (Email/Password)
@@ -12,7 +12,28 @@ A modern Customer Relationship Management system built with Next.js 14 and Supab
 - **Tailwind CSS** for beautiful, responsive UI
 - **Vercel Deployment Ready**
 
-## 🚀 Getting Started
+## 🆕 Phase 2 Features (Complete)
+
+- **Monday.com-Style UI** with professional design
+- **Left Sidebar Navigation** with collapse/expand
+- **CRM Pipeline Board** with 4 stages:
+  - 🔵 Pipeline - Initial prospects
+  - 🟢 Active - Deals in progress
+  - ⚫ Passed - Declined opportunities
+  - 🟣 Invested - Completed investments
+- **Drag-and-Drop** deal cards between stages
+- **Real-time Database Updates** with Supabase
+- **Deal Management** with:
+  - Company name
+  - Deal amount
+  - Owner/assigned person
+  - Last contact date
+  - Notes
+  - Contact information
+- **Dashboard Statistics** with real data
+- **Visual Feedback** and smooth animations
+
+## 🚀 Quick Start
 
 ### Prerequisites
 
@@ -21,7 +42,7 @@ A modern Customer Relationship Management system built with Next.js 14 and Supab
 
 ### Installation
 
-1. **Clone or navigate to the project directory:**
+1. **Navigate to the project:**
    ```bash
    cd /root/.openclaw/workspace/paoday-fresh
    ```
@@ -31,12 +52,15 @@ A modern Customer Relationship Management system built with Next.js 14 and Supab
    npm install
    ```
 
-3. **Environment Variables:**
+3. **Setup database (Phase 2):**
    
-   The `.env.local` file is already configured with your Supabase credentials:
-   ```
-   NEXT_PUBLIC_SUPABASE_URL=https://ryuaxvsfqmuskdcsrbmg.supabase.co
-   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+   Apply the deals table migration in Supabase:
+   ```bash
+   # Option 1: Follow the guide
+   cat SETUP-PHASE2.md
+   
+   # Option 2: Use the script
+   ./setup-database.sh
    ```
 
 4. **Run the development server:**
@@ -52,118 +76,194 @@ A modern Customer Relationship Management system built with Next.js 14 and Supab
 ```
 paoday-fresh/
 ├── app/
-│   ├── page.tsx              # Homepage
-│   ├── login/
-│   │   └── page.tsx          # Login page
-│   ├── signup/
-│   │   └── page.tsx          # Signup page
+│   ├── page.tsx                    # Homepage
+│   ├── login/page.tsx              # Login page
+│   ├── signup/page.tsx             # Signup page
 │   └── dashboard/
-│       └── page.tsx          # Protected dashboard
+│       ├── layout.tsx              # Dashboard layout with sidebar
+│       ├── page.tsx                # Dashboard home (stats)
+│       ├── crm/page.tsx            # CRM Pipeline Board
+│       ├── contacts/page.tsx       # Contacts (placeholder)
+│       ├── companies/page.tsx      # Companies (placeholder)
+│       ├── documents/page.tsx      # Documents (placeholder)
+│       └── settings/page.tsx       # Settings (placeholder)
+│
 ├── components/
-│   └── LogoutButton.tsx      # Logout component
+│   ├── Sidebar.tsx                 # 🆕 Left navigation sidebar
+│   ├── CRMBoard.tsx                # 🆕 Main pipeline board
+│   ├── PipelineColumn.tsx          # 🆕 Stage column component
+│   ├── DealCard.tsx                # 🆕 Deal card component
+│   └── LogoutButton.tsx            # Logout component
+│
 ├── lib/
 │   └── supabase/
-│       ├── client.ts         # Browser Supabase client
-│       ├── server.ts         # Server Supabase client
-│       └── middleware.ts     # Auth middleware logic
-├── middleware.ts             # Next.js middleware for route protection
-└── .env.local               # Environment variables
+│       ├── client.ts               # Browser Supabase client
+│       ├── server.ts               # Server Supabase client
+│       └── middleware.ts           # Auth middleware logic
+│
+├── supabase/
+│   └── migrations/
+│       └── 001_create_deals_table.sql  # 🆕 Database schema
+│
+├── middleware.ts                   # Route protection
+├── .env.local                      # Environment variables
+│
+└── Documentation/
+    ├── PHASE1-COMPLETION.md        # Phase 1 report
+    ├── PHASE2-COMPLETION.md        # 🆕 Phase 2 report
+    ├── SETUP-PHASE2.md             # 🆕 Phase 2 setup guide
+    ├── VISUAL-GUIDE.md             # 🆕 Visual reference
+    └── QUICKSTART.md               # Quick start guide
 ```
+
+## 🎯 Key Pages
+
+### Dashboard (`/dashboard`)
+- Welcome screen with user info
+- Statistics cards (total deals, active, pipeline, value)
+- Quick action buttons
+- Recent deals list
+
+### CRM Pipeline (`/dashboard/crm`)
+- 4-column Kanban board
+- Drag-and-drop deal cards
+- Stage-specific colors and counts
+- Total value per stage
+- Add deal buttons (placeholder)
+
+### Navigation
+- Home - Dashboard overview
+- CRM Pipeline - Deal board
+- Contacts - Contact management (coming soon)
+- Companies - Company management (coming soon)
+- Documents - Document storage (coming soon)
+- Settings - App settings (coming soon)
+
+## 🗄️ Database Schema
+
+### `deals` Table
+
+| Column | Type | Description |
+|--------|------|-------------|
+| `id` | UUID | Primary key |
+| `company_name` | VARCHAR(255) | Company name (required) |
+| `stage` | VARCHAR(50) | Deal stage (pipeline/active/passed/invested) |
+| `owner` | VARCHAR(255) | Person assigned to the deal |
+| `last_contact` | TIMESTAMP | Last contact date |
+| `notes` | TEXT | Deal notes |
+| `amount` | DECIMAL(12,2) | Deal amount in USD |
+| `contact_person` | VARCHAR(255) | Primary contact name |
+| `contact_email` | VARCHAR(255) | Contact email |
+| `contact_phone` | VARCHAR(50) | Contact phone |
+| `user_id` | UUID | User who created the deal |
+| `position` | INTEGER | Position within stage |
+| `created_at` | TIMESTAMP | Creation timestamp |
+| `updated_at` | TIMESTAMP | Last update timestamp |
+
+**Features:**
+- Row Level Security (RLS) enabled
+- Automatic `updated_at` trigger
+- Indexed for performance
+- Sample data included
 
 ## 🔐 Authentication Flow
 
 ### Sign Up
-1. User navigates to `/signup`
-2. Enters email and password (min 6 characters)
-3. Supabase creates account and sends verification email
-4. User is redirected to login page
+1. Navigate to `/signup`
+2. Enter email and password
+3. Account created in Supabase
+4. Redirect to login
 
 ### Sign In
-1. User navigates to `/login`
-2. Enters credentials
-3. On success, redirected to `/dashboard`
-4. Session is maintained with HTTP-only cookies
+1. Navigate to `/login`
+2. Enter credentials
+3. Redirect to `/dashboard`
+4. Session maintained with HTTP-only cookies
 
 ### Protected Routes
-- `/dashboard` requires authentication
-- Unauthenticated users are redirected to `/login`
-- Authenticated users accessing `/login` or `/signup` are redirected to `/dashboard`
+- All `/dashboard/*` routes require authentication
+- Automatic redirect to `/login` if not authenticated
+- Middleware handles session refresh
+
+## 🎨 UI/UX Features
+
+### Visual Design
+- **Monday.com-inspired** interface
+- **Color-coded stages** for quick recognition
+- **Gradient icons** for visual appeal
+- **Smooth animations** throughout
+- **Professional typography** and spacing
+- **Hover effects** for interactivity
+
+### Interactions
+- **Drag-and-drop** deals between stages
+- **Collapsible sidebar** for more space
+- **Active state highlighting** in navigation
+- **Loading states** during data fetch
+- **Drop zone highlighting** during drag
+
+### Responsive
+- **Desktop:** Full sidebar + 4 columns
+- **Tablet:** Collapsible sidebar recommended
+- **Mobile:** Future enhancement needed
+
+## 🧪 Testing the App
+
+### Phase 1 Tests
+1. ✅ Signup new account
+2. ✅ Login with credentials
+3. ✅ Access protected dashboard
+4. ✅ Logout functionality
+
+### Phase 2 Tests
+1. ✅ View dashboard statistics
+2. ✅ Navigate via sidebar
+3. ✅ Toggle sidebar collapse/expand
+4. ✅ View CRM pipeline with 4 stages
+5. ✅ See deal cards in each stage
+6. ✅ Drag card between stages
+7. ✅ Verify database update
+8. ✅ Check column counts update
+9. ✅ Verify stage totals update
+
+See **SETUP-PHASE2.md** for detailed testing checklist.
 
 ## 🚢 Deployment
 
 ### Vercel (Recommended)
 
-1. **Install Vercel CLI:**
+1. **Push to Git repository:**
    ```bash
-   npm i -g vercel
+   git init
+   git add .
+   git commit -m "Phase 2 complete"
+   git push origin main
    ```
 
-2. **Deploy:**
-   ```bash
-   vercel
+2. **Connect to Vercel:**
+   - Go to [vercel.com](https://vercel.com)
+   - Import your Git repository
+   - Vercel auto-detects Next.js
+
+3. **Add Environment Variables:**
+   ```
+   NEXT_PUBLIC_SUPABASE_URL=https://ryuaxvsfqmuskdcsrbmg.supabase.co
+   NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJhbGci...
    ```
 
-3. **Add Environment Variables in Vercel Dashboard:**
-   - `NEXT_PUBLIC_SUPABASE_URL`
-   - `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+4. **Apply Database Migration:**
+   - Go to Supabase SQL Editor
+   - Run `supabase/migrations/001_create_deals_table.sql`
 
-4. **Deploy to production:**
-   ```bash
-   vercel --prod
-   ```
+5. **Deploy:**
+   - Vercel deploys automatically
+   - Visit your production URL
 
-### Important Notes for Deployment
+### Environment Variables
 
-- **DO NOT use static export (`output: 'export'`)** for this app
-- Supabase authentication requires server-side features (middleware, server components)
-- Vercel natively supports Next.js server-side features
-- Static export would break authentication functionality
-
-### Alternative: Static Export (Not Recommended for Auth)
-
-If you absolutely need static export for a different hosting platform:
-
-1. Uncomment `output: 'export'` in `next.config.mjs`
-2. Note that authentication middleware won't work properly
-3. You'll need to implement client-side only authentication
-4. This is not recommended for production use with authentication
-
-## 🗄️ Supabase Setup
-
-Your Supabase project should have authentication enabled:
-
-1. Go to **Authentication > Settings** in Supabase Dashboard
-2. Ensure **Email** provider is enabled
-3. Configure email templates if desired
-4. (Optional) Disable email confirmation for development:
-   - Go to **Authentication > Providers > Email**
-   - Toggle "Confirm email" off for testing
-
-## 🧪 Testing the App
-
-1. **Start the dev server:**
-   ```bash
-   npm run dev
-   ```
-
-2. **Test signup:**
-   - Go to http://localhost:3000
-   - Click "Create Account"
-   - Enter email and password
-   - Check email for verification (if enabled)
-
-3. **Test login:**
-   - Go to http://localhost:3000/login
-   - Enter your credentials
-   - You should be redirected to the dashboard
-
-4. **Test protected routes:**
-   - Try accessing /dashboard without logging in
-   - You should be redirected to /login
-
-5. **Test logout:**
-   - Click "Sign out" in the dashboard
-   - You should be redirected to login
+Required in `.env.local` and production:
+- `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anon key
 
 ## 🛠️ Tech Stack
 
@@ -172,41 +272,103 @@ Your Supabase project should have authentication enabled:
 - **Styling:** Tailwind CSS
 - **Authentication:** Supabase Auth
 - **Database:** Supabase (PostgreSQL)
+- **Drag-and-Drop:** @dnd-kit
+- **Icons:** Lucide React
 - **Deployment:** Vercel
 
-## 📝 Next Steps (Phase 2+)
+## 📝 Phase 3 Roadmap
 
-- [ ] Add customer management (CRUD)
-- [ ] Create database tables in Supabase
-- [ ] Add profile page
-- [ ] Implement role-based access control
-- [ ] Add real-time features
-- [ ] Create API routes for data operations
-- [ ] Add analytics dashboard
+Potential features for next phase:
+
+### Deal Management
+- [ ] Add new deal form
+- [ ] Edit deal modal
+- [ ] Delete deal confirmation
+- [ ] Bulk actions
+- [ ] Deal history/timeline
+
+### Advanced Features
+- [ ] Search and filter deals
+- [ ] Sort by various fields
+- [ ] Real-time collaboration
+- [ ] Comments on deals
+- [ ] File attachments
+- [ ] Activity feed
+
+### Integrations
+- [ ] Email sync
+- [ ] Calendar integration
+- [ ] Export to CSV/PDF
+- [ ] Slack/Teams notifications
+- [ ] API webhooks
+
+### Analytics
+- [ ] Deal flow metrics
+- [ ] Conversion rates
+- [ ] Revenue forecasting
+- [ ] Team performance dashboard
+- [ ] Custom reports
+
+### User Management
+- [ ] User profiles
+- [ ] Team management
+- [ ] Role-based permissions
+- [ ] Activity logs
 
 ## 🐛 Troubleshooting
 
-### "Invalid API Key" Error
-- Check that `.env.local` exists and has correct values
-- Restart the dev server after changing env variables
+### "deals table does not exist"
+**Solution:** Apply the database migration in Supabase SQL Editor
 
-### Redirected to Login When Already Logged In
-- Clear browser cookies
-- Check browser console for errors
-- Verify Supabase project is accessible
+### No deals showing in CRM
+**Solution:** 
+1. Check Supabase Table Editor for data
+2. Verify RLS policies are enabled
+3. Ensure you're logged in
 
-### Email Verification Not Working
-- Check Supabase email settings
-- Check spam folder
-- For development, disable email confirmation in Supabase
+### Can't drag cards
+**Solution:**
+1. Check browser console for errors
+2. Verify `@dnd-kit` packages installed
+3. Clear cache and refresh
+
+### Sidebar not showing
+**Solution:**
+1. Verify you're on a `/dashboard/*` route
+2. Check `dashboard/layout.tsx` exists
+3. Look for console errors
+
+See **SETUP-PHASE2.md** for more troubleshooting.
+
+## 📚 Documentation
+
+- **PHASE1-COMPLETION.md** - Phase 1 detailed report
+- **PHASE2-COMPLETION.md** - Phase 2 detailed report
+- **SETUP-PHASE2.md** - Step-by-step setup guide
+- **VISUAL-GUIDE.md** - Visual walkthrough with ASCII diagrams
+- **QUICKSTART.md** - Fast-start instructions
+
+## 🔗 Useful Links
+
+- **Supabase Docs:** https://supabase.com/docs
+- **Next.js Docs:** https://nextjs.org/docs
+- **@dnd-kit Docs:** https://docs.dndkit.com/
+- **Tailwind Docs:** https://tailwindcss.com/docs
+- **Lucide Icons:** https://lucide.dev/
 
 ## 📄 License
 
 This project is built for Paoday CRM.
 
-## 🙋 Support
+## 🎉 What's New in Phase 2
 
-For issues or questions:
-1. Check the Supabase docs: https://supabase.com/docs
-2. Check Next.js docs: https://nextjs.org/docs
-3. Review the console for error messages
+✨ **Monday.com-style CRM interface**  
+✨ **Drag-and-drop deal management**  
+✨ **Professional sidebar navigation**  
+✨ **Real-time database updates**  
+✨ **Beautiful visual design**  
+✨ **Smooth animations and interactions**
+
+---
+
+**Ready to use your CRM?** Run `npm run dev` and start managing deals! 🚀
