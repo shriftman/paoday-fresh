@@ -319,7 +319,7 @@ export default function WorkspaceSidebar() {
             {/* Add New Workspace Button */}
             <button
               onClick={() => setShowNewWorkspaceModal(true)}
-              className="w-full flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-700 transition-colors mx-auto text-sm"
+              className="w-full flex items-center space-x-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-700 transition-colors mx-auto text-sm button-ghost"
             >
               <Plus className="w-4 h-4" />
               <span>New Workspace</span>
@@ -351,7 +351,7 @@ export default function WorkspaceSidebar() {
             <>
               <button
                 onClick={() => router.push('/dashboard/settings')}
-                className="w-full flex items-center justify-center p-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-all"
+                className="w-full flex items-center justify-center p-2 rounded-lg text-gray-300 hover:bg-gray-700 hover:text-white transition-all button-ghost"
                 title="Settings"
               >
                 <Settings className="w-4 h-4" />

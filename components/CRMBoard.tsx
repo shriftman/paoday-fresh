@@ -156,7 +156,7 @@ export default function CRMBoard() {
     <div className="p-6">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">CRM Pipeline</h1>
+        <h1 className="text-3xl font-bold text-[var(--color-primary)] mb-2">CRM Pipeline</h1>
         <p className="text-gray-600">
           Drag and drop deals between stages to update their status
         </p>
