@@ -14,14 +14,107 @@
   }
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 body {
-  color: var(--foreground);
+  color: var(--text-primary);
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+:root {
+  --primary-color: #3B82F6;
+  --primary-color-hover: #2563EB;
+  --status-success: #10B981;
+  --status-warning: #F59E0B;
+  --status-error: #EF4444;
+  --text-primary: #171717;
+  --text-secondary: #4B5563;
+  --text-inverse: #FFFFFF;
+  --background: #FFFFFF;
+  --background-alt: #F9FAFB;
+  --background-sidebar: #1F2937;
+  --background-modal: #FFFFFF;
+  --background-overlay: rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: #3B82F6;
+    --primary-color-hover: #2563EB;
+    --status-success: #10B981;
+    --status-warning: #F59E0B;
+    --status-error: #EF4444;
+    --text-primary: #E5E7EB;
+    --text-secondary: #9CA3AF;
+    --text-inverse: #1F2937;
+    --background: #0A0A0A;
+    --background-alt: #111827;
+    --background-sidebar: #111827;
+    --background-modal: #1F2937;
+    --background-overlay: rgba(0, 0, 0, 0.7);
+  }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
+
+  .mb-sm {
+    margin-bottom: 0.25rem;
+  }
+
+  .mb-md {
+    margin-bottom: 0.5rem;
+  }
+
+  .pb-md {
+    padding-bottom: 0.5rem;
+  }
+
+  .text-primary {
+    color: var(--text-primary) !important;
+  }
+
+  .text-secondary {
+    color: var(--text-secondary) !important;
+  }
+
+  .bg-primary {
+    background-color: var(--primary-color) !important;
+  }
+
+  .bg-primary-hover:hover {
+    background-color: var(--primary-color-hover) !important;
+  }
+
+  .bg-success {
+    background-color: var(--status-success) !important;
+  }
+
+  .bg-warning {
+    background-color: var(--status-warning) !important;
+  }
+
+  .bg-error {
+    background-color: var(--status-error) !important;
+  }
+
+  .text-inverse {
+    color: var(--text-inverse) !important;
+  }
+
+  .rounded-lg {
+    border-radius: 0.5rem;
+  }
+
+  .focus-ring {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 2px;
+  }
 }
+
