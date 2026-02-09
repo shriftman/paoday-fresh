@@ -149,14 +149,17 @@ export default function WorkspaceSidebar() {
           {!collapsed && mainWorkspace && (
             <button
               onClick={() => setIsMainDropdownOpen(!isMainDropdownOpen)}
-              className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-700 transition-colors"
+              className="w-full flex items-center justify-between px-3 py-2 rounded-lg hover:bg-gray-600 focus:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-colors"
+              aria-expanded={isMainDropdownOpen}
+              aria-controls="main-workspace-menu"
             >
               <div className="flex items-center space-x-2">
-                <span className="text-xl">{mainWorkspace.icon}</span>
-                <span className="font-semibold text-sm">{mainWorkspace.name}</span>
+                <span className="text-xl text-gray-100">{mainWorkspace.icon}</span>
+                <span className="font-semibold text-sm text-gray-100">{mainWorkspace.name}</span>
               </div>
               <ChevronDown 
-                className={`w-4 h-4 transition-transform ${isMainDropdownOpen ? 'rotate-0' : '-rotate-90'}`}
+                className={`w-4 h-4 transition-transform text-gray-100 ${isMainDropdownOpen ? 'rotate-0' : '-rotate-90'}`}
+                aria-hidden="true"
               />
             </button>
           )}
