@@ -376,9 +376,9 @@ export default function ResearchBoard({ boardId }: ResearchBoardProps) {
       <div className="border-b border-gray-200 bg-white px-6 py-4">
         <div className="flex items-center justify-between mb-4">
           <div className="flex items-center gap-3">
-            <span className="text-3xl text-[var(--color-primary)]">{boardData.board.icon || '📊'}</span>
+            <span className="text-3xl">{boardData.board.icon || '📊'}</span>
             <div>
-              <h1 className="text-2xl font-bold text-[var(--color-primary)]">{boardData.board.name}</h1>
+              <h1 className="text-2xl font-bold text-gray-900">{boardData.board.name}</h1>
               {boardData.board.description && (
                 <p className="text-sm text-gray-500">{boardData.board.description}</p>
               )}
